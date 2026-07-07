@@ -1,0 +1,64 @@
+# ============================================
+# 基础网络与安全（必须保持较新，修复冲突）
+# ============================================
+certifi>=2024.7.4
+idna>=3.7
+urllib3>=2.2.0
+requests>=2.32.0
+requests-toolbelt>=1.0.0
+httpx>=0.28.0
+httpx-sse>=0.4.0
+
+# ============================================
+# Django Web 框架及插件
+# ============================================
+Django==4.2.30
+django-cors-headers>=4.4.0
+djangorestframework>=3.15.2
+django-filter>=23.0,<24.0
+drf-spectacular>=0.28.0
+django-crispy-forms>=1.7.2
+django-formtools>=2.5.0
+django-import-export>=4.3.0
+django-reversion>=5.0.0
+django-bootstrap3>=11.0.0
+# django-rest-swagger==2.1.2      # 已废弃，建议用 drf-spectacular
+pytz>=2023.3
+python-docx>=0.8.11,<2.0.0
+python-crontab>=2.2.8
+APScheduler>=3.10.0
+crontab>=0.22.6
+pycryptodome>=3.23.0
+PyMySQL>=1.1.0
+pypinyin>=0.37.0
+redis>=5.0.0
+XlsxWriter>=1.2.8
+DBUtils>=2.0
+# ============================================
+# AI 测试用例生成 Agent（保持最新）
+# ============================================
+fastapi>=0.115.0
+uvicorn>=0.35.0
+sse-starlette>=2.0.0
+
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-openai>=0.3.0
+langchain-deepseek>=0.1.0
+langgraph>=0.6.0
+langgraph-checkpoint>=2.0.0
+langgraph-supervisor>=0.0.20
+
+# 显式声明以解决版本冲突
+arxiv>=2.3.0                    # 兼容 requests 2.34.2
+langchain-experimental>=0.4.0   # 兼容 langchain-community>=0.4.0 和 core>=1.0
+
+pyyaml>=6.0
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+
+# 可观测性（可选）
+langfuse>=2.0.0
+
+# LLM SDK
+openai>=1.50.0

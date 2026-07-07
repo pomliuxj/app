@@ -1,0 +1,17 @@
+# [!NOTE]
+# Read the `docs/configuration_guide.md` carefully, and update the
+# configurations to match your specific settings and requirements.
+# - Replace `api_key` with your own credentials.
+# - Replace `base_url` and `model` name if you want to use a custom model.
+# - Set `verify_ssl` to `false` if your LLM server uses self-signed certificates
+# - A restart is required every time you change the `config.yaml` file.
+
+BASIC_MODEL:
+  base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+  model: "qwen3.7-plus-2026-05-26"
+  api_key: ""
+  max_retries: 3 # Maximum number of retries for LLM calls
+  extra_body:
+    "enable_thinking": true
+  # verify_ssl: false  # Uncomment this line to disable SSL certificate verification for self-signed certificates
+
