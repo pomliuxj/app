@@ -34,17 +34,26 @@ app.include_router(chat_controller.router)
 
 @app.get("/health")
 async def health_check():
-    """健康检查：验证 Agent 能否连接到自动化后端服务"""
+    """健康检查：验证 Agent 能否连接到自动化后端服务，并返回不可伪造的后端摘要"""
     base_url = os.getenv("AUTOMATION_BASE_URL", "http://127.0.0.1:8000")
     result = {
         "agent": "ok",
         "backend_url": base_url,
         "backend_status": "unknown",
+        "backend_summary": None,
     }
     try:
         async with httpx.AsyncClient(timeout=5) as client:
             resp = await client.get(f"{base_url}/api/schema/")
-            result["backend_status"] = "reachable" if resp.status_code == 200 else f"HTTP {resp.status_code}"
+            if resp.status_code == 200:
+                result["backend_status"] = "reachable"
+                schema = resp.json()
+                result["backend_summary"] = {
+                    "title": schema.get("info", {}).get("title", ""),
+                    "path_count": len(schema.get("paths", {})),
+                }
+            else:
+                result["backend_status"] = f"HTTP {resp.status_code}"
     except Exception as e:
         result["backend_status"] = f"unreachable: {e}"
     status_code = 200 if result["backend_status"] == "reachable" else 503

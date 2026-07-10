@@ -12,7 +12,6 @@ from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiRespon
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.parsers import JSONParser
 from rest_framework.views import APIView
-from api_test.config.Glb_config import THEAD_COUNT
 from api_test.common.WriteExcel import Write
 from api_test.common.addTask import creatTask,delTask
 from api_test.common.api_response import JsonResponse

@@ -5,6 +5,7 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from api_test import urls
 from api_test.api.ApiDoc import MockRequest
+from drf_spectacular.renderers import OpenApiJsonRenderer
 from drf_spectacular.views import (
     SpectacularAPIView,
     SpectacularSwaggerView,
@@ -15,6 +16,7 @@ class PublicSchemaView(SpectacularAPIView):
     """无需认证的 Schema 端点，方便导入 Swagger 时自引用。"""
     authentication_classes = ()
     permission_classes = ()
+    renderer_classes = [OpenApiJsonRenderer]
 
 
 urlpatterns = [

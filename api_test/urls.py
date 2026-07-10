@@ -1,6 +1,6 @@
 from django.urls import re_path as url
 
-from api_test.api import ApiDoc, automationCase as Case, member, dynamic, user, VisitorRecord, DingManage, register, account, project_member
+from api_test.api import ApiDoc, automationCase as Case, member, dynamic, user, VisitorRecord, register, account, project_member
 from api_test.api import automationReport as Report
 from api_test.api.global_parameter import HostTotal, DisableHost, EnableHost,GlobalOnlineCode,\
     GlobalDataBase,CheckDataBase,CaseDatabaseCheck,testRunDataCase
@@ -22,8 +22,6 @@ urlpatterns = [
     url(r'member/remove_member', project_member.ProjectMemberRemove.as_view()),
     url(r'member/update_role', project_member.ProjectMemberUpdateRole.as_view()),
 
-    url(r'user/dingConfig', DingManage.DingManage.as_view()),
-    # url(r'user/dingLogin', DingManage.DingLogin.as_view()),
     url(r'project/projection', Projection.as_view()),
     url(r'project/disable_project', DisableProject.as_view()),
     url(r'project/enable_project', EnableProject.as_view()),

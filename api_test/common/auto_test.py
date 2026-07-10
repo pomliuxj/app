@@ -3,7 +3,6 @@ import django
 import sys,json
 import os
 import pytz
-from api_test.common.sendMsg import sendFeishuMsg
 import logging
 LOGGINGS = logging.getLogger(__name__)
 from api_test.common.decorator import handle_db_connections ,close_old_connections
@@ -59,12 +58,6 @@ def automation_task(host_id, project_id, case_id, taskName):
     taskResult = (lambda x, y: True if x == y else False)
     result_detail = "总执行测试接口数：%s  成功:%s, 失败:%s, 执行错误:%s, 超时:%s" % (
     total, _pass, fail, error, time_out)
-    try:
-        if taskResult(total, _pass) == False:
-            sendFeishuMsg(f'定时任务-{taskName}-失败:', result_data)
-        # send_email(project_id,result_data)
-    except Exception as E:
-        LOGGINGS.info(E)
     elapsed_time = (datetime.datetime.now(tz) - start_time).seconds
     try:
         AutomationTaskRunTime(project=Project.objects.get(id=project_id), startTime=format_start_time,
@@ -104,7 +97,3 @@ def allTaskRecode():
     taskrecodedata = f'执行时间：{format_start_time} \n' \
                      f'所有执行记录如下：{json.dumps(taskRecs, ensure_ascii=False)} '
     LOGGINGS.info(taskrecodedata)
-    try:
-        sendFeishuMsg(f'全部定时任务执行记录', taskrecodedata)
-    except ConnectionError as E:
-        LOGGINGS.info(E)
